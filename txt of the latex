@@ -1,0 +1,359 @@
+\documentclass[12pt]{article}\author{Rami}
+\begin{document}
+\title{Major Project: AM3813A: Nonlinear ODE's}
+\maketitle
+
+
+
+\section{Introduction}
+Find the approximate solutions of the following differential equation
+\paragraph {$\ddot x + x - \varepsilon x \dot x - \frac{1}{2} \varepsilon^2 x^2 \dot x = 0 $} 
+
+Up to the 3th order 
+
+
+
+
+\section{Solve using Lindstedt-Poincarè Method}
+Let \hspace{35pt}
+$\omega(\epsilon)=w_0 +\epsilon w_1 + ...$
+\vspace{0.5cm}
+
+\noindent 
+and let the timescale  
+$ \tau = \omega(\epsilon)t $ 
+\vspace{0.5cm}
+
+\noindent
+Assume solution is in the form 
+$ x(\tau,\epsilon) = x_0(\tau) + \epsilon x_1(\tau) + \epsilon^2 x_2 (\tau) + ...$
+\vspace{0.5cm}
+
+\noindent
+Additionally, we have $ \dot x = \frac{\partial x}{\partial t} = \omega(\epsilon) \frac{\partial x}{\partial \tau} $
+\vspace{0.5cm}
+
+\noindent
+and so, $ \ddot x = \frac{\partial^2 x}{\partial t^2} = \omega^2(\epsilon) \frac{\partial^2 x}{\partial \tau^2} $
+\vspace{1cm}
+
+\noindent
+Mind you for the duration of this section, we will continue to use $ \ddot x $ notation with the implication that derivative is now with respect to $ \tau $ simply to lessen the confusion (and decrease writing)
+
+\vspace{0.75cm}
+\noindent
+with this our original DE becomes:
+$ \omega^2(\epsilon) \ddot x + x - \epsilon x \omega(\epsilon) \dot x - \frac{\epsilon^2}{2} x^2 \omega(\epsilon) \dot x = 0 $
+\vspace{0.75cm}
+
+\noindent
+note we will allow $ w_0 = 1 $ to get the harmonic oscillator 
+\vspace{0.75cm}
+
+\noindent
+Expanding our equation 
+\vspace{0.75cm}
+
+$ (( (1 + \epsilon\omega_1 + \epsilon^2\omega_2 + \epsilon^3\omega_3)(1 + \epsilon\omega_1 + \epsilon^2\omega_2 + \epsilon^3\omega_3))
+(\ddot x_0 + \epsilon \ddot x_1 + \epsilon^2 \ddot x + \epsilon^3 \ddot x_3)) + 
+(x_0 + \epsilon x_1 + \epsilon^2 x_2 + \epsilon^3 x_3)
+ - ((\epsilon(x_0 + \epsilon x_1 + \epsilon^2 x_2 + \epsilon^3 x_3)(w_0 + \epsilon w_1 + \epsilon^2 w_2 + \epsilon^3 w_3)(\dot x_0 + \epsilon \dot x_1 + \epsilon^2 \dot x_2 + \epsilon^3 \dot x_3)) - (\frac{\epsilon^2}{2}((x_0 + \epsilon x_1 + \epsilon^2 x_2 + \epsilon^3 x_3)(x_0 + \epsilon x_1 + \epsilon^2 x_2 + \epsilon^3 x_3))(\dot x_0 + \epsilon \dot x_1 + \epsilon^2 \dot x_2 + \epsilon^3 \dot x_3)(w_0 + \epsilon w_1 + \epsilon^2 w_2 + \epsilon^3 w_3)) $
+\vspace{1cm}
+
+\noindent
+Collecting Epsilon powered terms
+\vspace{1cm}
+
+
+$\epsilon^0$: \hspace{35pt} $ \ddot x + x_0 = 0 $
+
+\vspace{1cm}
+
+$\epsilon^1$: \hspace{35pt} $ 2 \omega_1 \ddot x_0 + \ddot x_1 + x_1 - x_0\dot x_0 = 0 $
+
+\vspace{1cm}
+
+$\epsilon^2$: \hspace{35pt} $ 2 \omega_2 \ddot x_0 + \omega^2_1 \ddot x_0 + 2 \omega_1 \ddot x_1 + \ddot x_2 + x_2 - x_0 \dot x_1 - w_1 x_0 \dot x_0 - x_1 \dot x_0$
+
+\vspace{0.5cm}
+
+\hspace{60pt} $  - \frac{1}{2} x^2_0 \dot x_0 = 0 $
+
+\vspace{1cm}
+
+$\epsilon^3$: \hspace{35pt} $2 w_1 w_2 \ddot x_0 + 2 w_3 \ddot x_0 + 2 w_2 \ddot x_1 + 2 w_1 \ddot x_2 + \ddot x_3 + x_3 - x_0 \dot x_2 - w_1 x_0 \dot x_1$
+
+\vspace{0.5cm}
+
+\hspace{60pt} $ - x_1 \dot x_1 - w_2 x_0 \dot x_0 - w_1 x_1 \dot x_0 - x_2 \dot x_0 - \frac{1}{2}w_1 x^2_0 \dot x_0 - \frac{1}{2} x^2_0 \dot x_1 - \frac{1}{2}w_1 x_0 x_1 \dot x_0 $
+
+\vspace{0.5cm}
+
+\hspace{60pt} $ - \frac{1}{2} x_0 x_1 \dot x_1 - \frac{1}{2} x_0 x_1 \dot x_0 $
+
+\newpage
+
+\subsection{Solving: $\epsilon^0$}
+
+\vspace{0.5cm}
+
+\noindent
+$\epsilon^0$: \hspace{35pt} $ \ddot x + x_0 = 0 $
+\vspace{0.5cm}
+
+\noindent
+Supposing our conditions for the original DE is
+
+\vspace{0.5cm}
+
+ $x(0) = A$ \hspace{25pt}and\hspace{25pt} $ \frac{\partial x}{\partial t}(0) = B$
+ 
+ \vspace{0.75cm}
+ 
+\noindent
+Then the  solution to the $\epsilon^0$: 
+
+\vspace{0.5cm}
+
+is \hspace{50pt} $x_0(\tau) = A\cos(\tau) + B\sin(\tau)$
+
+
+\subsection{Solving: $\epsilon^1$}
+
+\vspace{0.5cm}
+
+\noindent
+$\epsilon^1$: \hspace{35pt} $ 2 \omega_1 \ddot x_0 + \ddot x_1 + x_1 - x_0\dot x_0 = 0 $
+
+\vspace{0.5cm}
+
+which becomes: \hspace{15pt} $\ddot x_1 + x_1 = x_0 \ddot x_0 - 2 \omega_1 \ddot x_0 $
+
+
+
+\vspace {1cm}
+
+to compute the RHS first, we'll need:
+
+\vspace {0.5cm}
+
+$x_0(\tau) = A\cos(\tau) + B\sin(\tau)$
+
+\vspace {0.5cm}
+
+$\dot x_0(\tau) = -A\sin(\tau) + B\cos(\tau)$
+ 
+ 
+\vspace {0.5cm}
+
+$\ddot x_0(\tau) = -A\cos(\tau) - B\sin(\tau)$
+
+\vspace{1cm}
+
+then we have:
+
+\vspace{0.5cm}
+
+
+ $(A\cos(\tau) + B\sin(\tau))(B\cos(\tau) - A\sin(\tau)) + 2 \omega_1(A\cos(\tau) + B\sin(\tau)$
+ 
+ \vspace{0.5cm}
+ 
+Applying trigonometric properties we obtain:
+
+\vspace{0.5cm}
+
+$[B^2 - A^2]\frac{\sin(2\tau)}{2} + AB\cos(2\tau) + 2 \omega_1 [A\cos(\tau) + B\sin(\tau)] $
+
+\vspace{1cm}
+
+As we have the freedom of choosing our $w_n$ terms to remove secular terms, we are faced with the trivial solution in this case. i.e, to let $w_1 = 0$
+
+\vspace{1cm}
+
+Now the $\epsilon^1$ equation becomes:
+
+\vspace{0.5cm}
+
+$\ddot x + x = [B^2 - A^2]\frac{\sin(2\tau)}{2} + AB\cos(2\tau)$
+
+\vspace{0.5cm}
+
+solve this using the \textit{undetermined coefficient method}
+
+\vspace{0.5cm}
+
+using the initial conditions with 
+
+\vspace{0.5cm}
+
+$x_1(0) = 0$: \hspace{0.5cm} $\dot x_1(0) = 0$
+
+\vspace{0.5cm}
+
+yields:
+
+\vspace{0.5cm}
+
+$x_1(\tau) = \frac{AB}{3}\cos(\tau) + \frac{B^2-A^2}{12}\sin(\tau)-\frac{AB}{3}\cos(2\tau) + \frac{A^2 - B^2}{6}\sin(2\tau)$
+
+\vspace{1cm}
+
+\subsection{Solving: $\epsilon^2$}
+
+
+\vspace{0.5cm}
+
+$\epsilon^2$: \hspace{35pt} $ 2 \omega_2 \ddot x_0 + \omega^2_1 \ddot x_0 + 2 \omega_1 \ddot x_1 + \ddot x_2 + x_2 - x_0 \dot x_1 - w_1 x_0 \dot x_0 - x_1 \dot x_0$
+
+\vspace{0.5cm}
+
+\hspace{40pt} $  - \frac{1}{2} x^2_0 \dot x_0 = 0 $
+
+\vspace{1cm}
+
+Rewriting the equation, with $w_1 = 0$:
+
+
+\vspace{0.5cm}
+
+
+$\ddot x_2 + x_2 = x_0\dot x_1 + \dot x_0 x_1 - 2\omega_2\ddot x_0 + \frac{1}{2}\dot x_0 x^2_0$
+
+\newpage
+
+To compute this, we'll need the following
+
+
+\vspace {0.5cm}
+
+$x_0(\tau) = A\cos(\tau) + B\sin(\tau)$
+
+\vspace {0.5cm}
+
+$\dot x_0(\tau) = -A\sin(\tau) + B\cos(\tau)$
+ 
+ 
+\vspace {0.5cm}
+
+$\ddot x_0(\tau) = -A\cos(\tau) - B\sin(\tau)$
+
+
+\vspace{0.5cm}
+
+\hspace{1cm} and
+
+\vspace{0.5cm}
+
+$x_1(\tau) = \frac{AB}{3}\cos(\tau) + \frac{B^2-A^2}{12}\sin(\tau)-\frac{AB}{3}\cos(2\tau) + \frac{A^2 - B^2}{6}\sin(2\tau)$
+
+\vspace{0.5cm}
+
+$\dot x_1 (\tau) = -\frac{AB}{3}\sin(\tau) + \frac{B^2 - A^2}{12}\cos(\tau) - \frac{AB}{3}\cos(2\tau) + \frac{A^2 - B^2}{6}\sin(2\tau)$
+
+
+\vspace{1cm}
+
+The RHS becomes:
+
+\vspace{0.75cm}
+
+$ -\frac{A^2B}{3}\sin(\tau)\cos(\tau) + \frac{AB^2-A^3}{12}\cos^2(\tau) - \frac{A^2B}{3}\cos(2\tau)\cos(\tau) + \frac{A^3-AB^2}{6}\sin(2\tau)\cos(\tau) - \frac{AB^2}{3}\sin^2(\tau) + \frac{B^3 - A^2B}{12}\cos(\tau)sin(\tau) - \frac{AB^2}{3}\cos(2\tau)\sin(\tau) + \frac{A^2B-B^3}{6}\sin(2\tau)\sin(tau) - \frac{A^3B}{3}\sin(\tau)cos(\tau) + \frac{A^3-AB^2}{12}\sin^2(\tau) + \frac{A^3B}{3}\cos(2\tau)\sin(\tau) + \frac{AB^2-A^3}{6}\sin(2\tau)\sin(\tau) + \frac{AB^2-A^3}{6}\sin(2\tau)\sin(\tau) + \frac{AB^2}{3}\cos^2(\tau) + \frac{B^3-A^2B}{12}\sin(\tau)\cos(\tau) - \frac{AB^2}{3}\cos(2\tau)\cos(\tau) + \frac{A^2B-B^3}{6}\sin(2\tau)\cos(\tau) - 2\omega_2(-A\cos(\tau) - B\sin(\tau)) - \frac{1}{2}(A^3\cos^3(\tau)\sin(\tau) - AB^2\sin^2(\tau) - A^2B\sin(2\tau)\sin(\tau) + A^2B\cos^3(\tau) + B^3\sin^2(\tau)\cos(\tau) + AB^2\sin(2\tau)\cos(tau))$
+
+
+\vspace{1cm}
+
+Collecting like terms and using trig properties
+
+\vspace{1cm} 
+
+
+$\frac{1}{24} [(2A+3B)(A^2+B^2)\cos(\tau)+(3A + 2B)(A^2 + B^2)\sin(\tau) +$    
+
+\vspace{0.5cm}
+
+  $2A(5B^2 - A^2)\cos(2\tau)-2B(5A^2-B^2)\sin(2\tau)      +    (3B(3A^2 - B^2) + $
+  
+  \vspace{0.5cm}
+  
+  $6A(A^2 - 3B^2))\cos(3\tau)+((3A(3B^2-A^2)-6B(B^2-3A^2))\sin(3\tau)]     $
+
+
+\vspace{0.5cm}
+
+$-2\omega_2(-A\cos(\tau)-B\sin(\tau))$
+
+\newpage
+
+
+The terms causing secular terms are:
+
+\vspace{0.5cm}
+
+$ \frac{(2A+3B)(A^2+B^2)\cos(\tau)+(3A + 2B)(A^2 + B^2)\sin(\tau)}{24} -2\omega_2(-A\cos(\tau)-B\sin(\tau))$
+
+
+\vspace{1.5cm}
+
+
+\hspace{50pt}  $2A\omega_2 = - \frac{(2A+3B)(A^2+B^2)}{2A}$
+
+
+\vspace{0.5cm}
+
+\hspace{50pt} $2B\omega_2 = -\frac{(3A + 2B)(A^2 + B^2)}{24}$
+
+\vspace{0.5cm}
+
+Dividing the first Equation by the second achieves:
+
+
+\vspace{0.5cm}
+
+\hspace{50pt} $\frac{A}{B} = \frac{2A + 3B}{3A + 2B}$
+
+\vspace{0.5cm}
+
+\hspace{50pt} $3A^2 + 2AB = 2AB + 3B^2$
+
+\vspace{0.5cm}
+
+\hspace{50pt} $A^2 = B^2$
+
+\vspace{1.5pt} 
+
+Now I believe this is similar to the condition that appears on page 150 of the notes on the section of Perturbation.
+
+\vspace{0.5cm}
+
+\hspace{50pt} Using $A^2 = B^2$, we achieve the value for $\omega_2$ to remove secular terms
+
+\vspace{0.5cm}
+
+\hspace{50pt} $\omega_2 = - \frac{A(2A + 3B}{24} = -\frac{B(3A + 2B}{24}$
+
+\vspace{0.5cm}
+
+Thus, we need to solve:
+
+\vspace{0.5cm} 
+
+$\ddot x_2 + x_2 = 2A(5B^2 - A^2)\cos(2\tau)-2B(5A^2 - B^2)\sin(2\tau)$
+
+\vspace{0.5cm} $+(3B(3A^2-B^2) + 6A(A^2-3B^2))\cos(3\tau)$
+
+\vspace{0.5cm} $+((3A(3B^2 - A^2) - 6B(B^2 - 3A^2))\sin(3\tau)$
+
+
+\vspace{0.5cm} Again, we use undet. coeff. Method with the complementary form guess:
+
+\vspace{0.5cm}
+
+\hspace{30pt} $C\cos(\tau) + D\sin(tau) + E\cos(2\tau) + F\sin(2\tau) + G\cos(3\tau) + H\sin(3\tau)$
+
+\newpage
+
+
+
+
+\end{document}
